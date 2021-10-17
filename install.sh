@@ -42,3 +42,9 @@ else
   exit 1
 fi
 echo "OKAY: img is downloaded and installed."
+
+echo "UPDATING: path to include kubectl and img"
+export PATH=$PATH:~/.local/bin/kubectl:~/.local/bin/img
+echo "DONE: path updated"
+
+img build -t test .
