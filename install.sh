@@ -49,4 +49,8 @@ echo "DONE: path updated"
 
 whoami
 
-img build -t test .
+export
+
+
+
+USER=go img build -t test .
