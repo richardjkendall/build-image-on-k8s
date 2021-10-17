@@ -47,4 +47,6 @@ echo "UPDATING: path to include kubectl and img"
 export PATH=$PATH:~/.local/bin/kubectl:~/.local/bin/img
 echo "DONE: path updated"
 
+whoami
+
 img build -t test .
