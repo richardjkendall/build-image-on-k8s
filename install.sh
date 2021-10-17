@@ -21,7 +21,7 @@ echo "OKAY: kubectl is downloaded and installed."
 
 
 echo "DOWNLOAD: img"
-curl -fSL "http://webshare-svc.default.svc.cluster.local/img"
+curl -LO "http://webshare-svc.default.svc.cluster.local/img"
 if [ $? -eq 1 ]l; then
   echo "ERROR: could not download img binary"
   exit 1
