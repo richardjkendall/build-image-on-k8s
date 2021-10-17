@@ -17,14 +17,15 @@ else
   echo "ERROR: checksum does not match"
   exit 1
 fi
+echo "OKAY: kubectl is downloaded and installed."
+
 
 echo "DOWNLOAD: img"
-
-curl -fSL "http://webshare-svc.default.svc.cluster.local/img" -o "/usr/local/bin/img"
-if [ $? -eq 1 ]
+curl -fSL "http://webshare-svc.default.svc.cluster.local/img"
+if [ $? -eq 1 ]l; then
   echo "ERROR: could not download img binary"
   exit 1
-then
+else
   echo "OKAY: downloaded img"
 fi
 
@@ -33,10 +34,11 @@ okay_string="img: OK"
 
 if [ "$check_output" == "$okay_string" ]; then
   echo "OKAY: downloaded file matches the expected checksum"
+  mkdir -p ~/.local/bin/img
+  mv ./img ~/.local/bin/kubectl
+  chmod +x ~/.local/bin/kubectl/img
 else
   echo "ERROR: checksum does not match"
   exit 1
 fi
-
-chmod a+x /usr/local/bin/img
 echo "OKAY: img is downloaded and installed."
