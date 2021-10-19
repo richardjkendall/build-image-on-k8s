@@ -48,5 +48,5 @@ export PATH=$PATH:~/.local/bin/kubectl:~/.local/bin/img
 echo "DONE: path updated"
 
 USER=go img build -t docker.richardjameskendall.com/test-nginx .
-USER=go img login -u $DOCKER_USER -p $DOCKER_PW
+USER=go img login -u $DOCKER_USER -p $DOCKER_PW docker.richardjameskendall.com
 USER=go img push docker.richardjameskendall.com/test-nginx
