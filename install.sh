@@ -21,7 +21,7 @@ echo "OKAY: kubectl is downloaded and installed."
 
 
 echo "DOWNLOAD: img"
-curl -LO "http://webshare-svc.default.svc.cluster.local/img"
+curl -LO "https://github.com/genuinetools/img/releases/download/v0.5.11/img-linux-amd64"
 if [ $? -eq 1 ]; then
   echo "ERROR: could not download img binary"
   exit 1
@@ -29,7 +29,8 @@ else
   echo "OKAY: downloaded img"
 fi
 
-check_output=`echo "3df3d9de798919c34bb3285518cf6f19307c9c7a0d697d3ede6a79dc51af2b55 img" | sha256sum --check`
+mv img-linux-amd64 img
+check_output=`echo "cc9bf08794353ef57b400d32cd1065765253166b0a09fba360d927cfbd158088 img" | sha256sum --check`
 okay_string="img: OK"
 
 if [ "$check_output" == "$okay_string" ]; then
@@ -47,6 +48,5 @@ echo "UPDATING: path to include kubectl and img"
 export PATH=$PATH:~/.local/bin/kubectl:~/.local/bin/img
 echo "DONE: path updated"
 
-USER=go img build -t docker.richardjameskendall.com/test-nginx .
-USER=go img login -u $DOCKER_USER -p $DOCKER_PW docker.richardjameskendall.com
-USER=go img push docker.richardjameskendall.com/test-nginx
+USER=go img build -t $REGISTRY/test-nginx .
+USER=go img push $REGISTRY/test-nginx
